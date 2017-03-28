@@ -96,19 +96,24 @@ ol {
 	text-align: center;
 }
 .table {
-	font-size: .75em;
+	font-weight: bold;
+	font-size: .6em;
 	font-family: cursive;
 }
 td {
 	padding: 0;
 	height: 35px;
 } 
-
-@media (max-width: 688px) {
+.table input, .table input:focus {
+	outline: none;
+	border: none;
+	width: 50%;
+}
+@media (max-width: 768px) {
 	.table {
 		position: absolute;
 		left: 0;	
-		font-size: .5em;	
+		font-size: .3em;	
 	}
 	h1 {
 		font-size: 1.75em;

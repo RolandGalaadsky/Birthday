@@ -1,4 +1,5 @@
 $(document).ready(function (){
+
 	/*Add People on People-snippet*/
 	var addHuman = function () {
 		console.log("fsad");
@@ -20,7 +21,7 @@ $(document).ready(function (){
 	$(document).on("click", ".remove", function(){
 		var father = $(this).parent()
 		if (father.is("td")) {
-			father = father.parent();	
+			father = father.parent();
 		}
 		father.remove();
 		changeIndexes();
@@ -29,23 +30,52 @@ $(document).ready(function (){
 	/*End add People */
 
 	/*Add Meal*/
-
 	var changeIndexes = function () {	
 		$(".thname").each(function(numOfRow, th){
 			$(th).html(numOfRow+1);
 		})
 	};
+
 	$(document).on("click", "#addFood", function(){
 		
 		$("tbody").append("<tr><tr>");
 		var lastTr = $("tbody > tr:last-of-type");
 		lastTr.append("<th scope='row' class='thname'></th>");
 		for(var cell=0; cell < 4; cell++) {
-			lastTr.append("<td></td>");
+			lastTr.append("<td><input></input></td>");
 		};
 		lastTr.append("<td><a class='remove'><span class='fa fa-times'></span></a></td>");
 		changeIndexes();
 	});
+
+	var allSum = function() {
+		var allInputs = $("tbody tr").children("td:nth-of-type(4)").children("input");
+		var allMoney = 0;
+		for(var numOfRow in allInputs) {
+			var value = parseFloat(allInputs[numOfRow]["value"] || "0");
+			allMoney += value;
+		}
+		$("h3 span").html(allMoney);
+	};
+	
+	var changePrice = function(selector) {
+		var priceForOne = selector.children("td:nth-of-type(2)").children("input").val();
+		var count = selector.children("td:nth-of-type(3)").children("input").val();
+		var sum = selector.children("td:nth-of-type(4)").children("input");
+		sum.val(priceForOne*count);
+		allSum();
+	};
+
+	$(document).on("blur", "tr", function(){
+		changePrice($(this));
+	});
+	$(document).on("keypress", "tr", function(key){
+		if (key.which == 13) {
+			changePrice($(this));
+		}
+		
+	});
+	/*End add Meal*/
 });
 
 (function (global) {
