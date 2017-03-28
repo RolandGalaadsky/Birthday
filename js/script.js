@@ -7,7 +7,7 @@ $(document).ready(function (){
 			$("ol").append("<li class='human'>"+name+"<a class='remove'><span class='fa fa-times'></span></a></li>")
 		}	
 	};
-	$("input").on("keypress", function(key){
+	$(document).on("keypress", "input", function(key){
 		if (key.which == 13) {
 			addHuman();
 		}
