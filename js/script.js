@@ -16,20 +16,35 @@ $(document).ready(function (){
 	$(document).on("click", "#addPeople", function(){
 		addHuman();
 	});
+	/*remove people*/
 	$(document).on("click", ".remove", function(){
-		$(this).parent().remove()
+		var father = $(this).parent()
+		if (father.is("td")) {
+			father = father.parent();	
+		}
+		father.remove();
+		changeIndexes();
 	});	
+	/*end remove people*/
 	/*End add People */
 
 	/*Add Meal*/
+
+	var changeIndexes = function () {	
+		$(".thname").each(function(numOfRow, th){
+			$(th).html(numOfRow+1);
+		})
+	};
 	$(document).on("click", "#addFood", function(){
-		console.log('fasdfa');
+		
 		$("tbody").append("<tr><tr>");
 		var lastTr = $("tbody > tr:last-of-type");
-		lastTr.append("<th></th>");
+		lastTr.append("<th scope='row' class='thname'></th>");
 		for(var cell=0; cell < 4; cell++) {
-			lastTr.append("<td></td>")
+			lastTr.append("<td></td>");
 		};
+		lastTr.append("<td><a class='remove'><span class='fa fa-times'></span></a></td>");
+		changeIndexes();
 	});
 });
 

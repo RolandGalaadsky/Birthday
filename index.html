@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 	<script src="js/ajax-utils.js"></script>
 	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/script.js"></script>
 </head>
 <body>
@@ -20,11 +21,25 @@
 							<h1>20-th Birthday</h1>
 						</a>
 					</div>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
 				</div>
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right visible-md visible-lg visible-sm">
 					<li><a href="#" onclick="$br.loadPeople();">People</a></li>
 					<li><a href="#" onclick="$br.loadFood();">Meal</a></li>
 				</ul>
+				<div class="collapse navbar-collapse" id="collapsable-nav">
+					<ul class="nav navbar-nav visible-xs" id="navlist">
+						<hr>
+						<li><a href="#" onclick="$br.loadPeople();">People</a></li>
+						<hr>
+						<li><a href="#" onclick="$br.loadFood();">Meal</a></li>
+					</ul>
+				</div>
 			</div>
 		</nav>
 	</header>
@@ -36,6 +51,6 @@
 		</div>
 
 	</div>
-	<script src="js/bootstrap.min.js"></script>
+	
 </body>
 </html>
