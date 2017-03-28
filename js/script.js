@@ -13,7 +13,7 @@ $(document).ready(function (){
 		}
 		
 	});
-	$("#addPeople").on("click", function(){
+	$(document).on("click", "#addPeople", function(){
 		addHuman();
 	});
 	$(document).on("click", ".remove", function(){
