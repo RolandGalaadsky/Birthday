@@ -100,10 +100,6 @@ ol {
 	font-size: .6em;
 	font-family: cursive;
 }
-td {
-	padding: 0;
-	height: 35px;
-} 
 .table input, .table input:focus {
 	outline: none;
 	border: none;
@@ -111,10 +107,12 @@ td {
 }
 @media (max-width: 768px) {
 	.table {
-		position: absolute;
-		left: 0;	
 		font-size: .3em;	
+		width: 100%;	
 	}
+	.table>tbody>tr>td:first-of-type input{
+		width: 100%;
+	} 
 	h1 {
 		font-size: 1.75em;
 	}
