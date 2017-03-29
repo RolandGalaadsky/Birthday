@@ -1,3 +1,13 @@
+var allSum = function() {
+	var allInputs = $("tbody tr").children("td:nth-of-type(4)").children("input");
+	var allMoney = 0;
+	for(var numOfRow in allInputs) {
+		var value = parseFloat(allInputs[numOfRow]["value"] || "0");
+		allMoney += value;
+	}
+	$("h3 span").html(allMoney);
+};
+
 $(document).ready(function (){
 
 	/*Add People on People-snippet*/
@@ -48,15 +58,7 @@ $(document).ready(function (){
 		changeIndexes();
 	});
 
-	var allSum = function() {
-		var allInputs = $("tbody tr").children("td:nth-of-type(4)").children("input");
-		var allMoney = 0;
-		for(var numOfRow in allInputs) {
-			var value = parseFloat(allInputs[numOfRow]["value"] || "0");
-			allMoney += value;
-		}
-		$("h3 span").html(allMoney);
-	};
+
 	
 	var changePrice = function(selector) {
 		var priceForOne = selector.children("td:nth-of-type(2)").children("input").val();
@@ -75,6 +77,7 @@ $(document).ready(function (){
 		}
 		
 	});
+
 	/*End add Meal*/
 });
 
@@ -86,6 +89,7 @@ $(document).ready(function (){
 	var insertHtml = function (selector, html) {
 		var targetElem = $(selector);
 		targetElem.html(html);
+		allSum();
 	};
 	
 	var showLoading = function (selector) {
