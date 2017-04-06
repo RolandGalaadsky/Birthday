@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Birthday</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/styles.css">
@@ -10,6 +9,7 @@
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/script.js"></script>
+	<title>Birthday</title>
 </head>
 <body>
 	<header>
@@ -29,21 +29,24 @@
 					</button>
 				</div>
 				<ul class="nav navbar-nav navbar-right visible-md visible-lg visible-sm">
-					<li><a href="#" onclick="$br.loadPeople();">People</a></li>
-					<li><a href="#" onclick="$br.loadFood();">Meal</a></li>
+					<li><a href="#People" onclick="$br.loadPeople();">People</a></li>
+					<li><a href="#Food" class="FoodClick" onclick="$br.loadFood();">Meal</a></li>
 				</ul>
 				<div class="collapse navbar-collapse" id="collapsable-nav">
 					<ul class="nav navbar-nav visible-xs" id="navlist">
 						<hr>
-						<li><a href="#" onclick="$br.loadPeople();">People</a></li>
+						<li><a href="#People" onclick="$br.loadPeople();">People</a></li>
 						<hr>
-						<li><a href="#" onclick="$br.loadFood();">Meal</a></li>
+						<li><a href="#Food" class="FoodClick" onclick="$br.loadFood();">Meal</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</header>
 	<div class="container">
+		<button type="button" class="btn btn-default btn-info">
+			Save 
+		</button>
 		<div class="row">
 				<div id="main" class="col-xs-12">
 					
@@ -51,6 +54,8 @@
 		</div>
 
 	</div>
-	
+	<form action="saveScript.php" method="post" class="hide">
+     	<textarea id="saveTextArea" name="content"></textarea>
+	</form>
 </body>
 </html>

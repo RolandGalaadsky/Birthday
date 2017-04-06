@@ -1,3 +1,5 @@
+
+
 var allSum = function() {
 	var allInputs = $("tbody tr").children("td:nth-of-type(4)").children("input");
 	var allMoney = 0;
@@ -9,10 +11,17 @@ var allSum = function() {
 };
 
 $(document).ready(function (){
-
 	/*Add People on People-snippet*/
+	if (window.location == "http://s1.localhost/Birthday/index.html#Food") {
+		$(".FoodClick").trigger("click");
+	}
+	$(document).on("click", ".btn-info", function () {
+			var html = $("#main").html();
+			$("#saveTextArea").val(html).parents("form").submit();
+			
+	});
+
 	var addHuman = function () {
-		console.log("fsad");
 		var name = $("input").val();
 		if (name !== "") {
 			$("ol").append("<li class='human'>"+name+"<a class='remove'><span class='fa fa-times'></span></a></li>")
@@ -24,6 +33,7 @@ $(document).ready(function (){
 		}
 		
 	});
+
 	$(document).on("click", "#addPeople", function(){
 		addHuman();
 	});
@@ -35,6 +45,7 @@ $(document).ready(function (){
 		}
 		father.remove();
 		changeIndexes();
+		allSum();
 	});	
 	/*end remove people*/
 	/*End add People */
@@ -47,7 +58,6 @@ $(document).ready(function (){
 	};
 
 	$(document).on("click", "#addFood", function(){
-		
 		$("tbody").append("<tr><tr>");
 		var lastTr = $("tbody > tr:last-of-type");
 		lastTr.append("<th scope='row' class='thname'></th>");
@@ -56,15 +66,26 @@ $(document).ready(function (){
 		};
 		lastTr.append("<td><a class='remove'><span class='fa fa-times'></span></a></td>");
 		changeIndexes();
+
 	});
-
-
 	
 	var changePrice = function(selector) {
-		var priceForOne = selector.children("td:nth-of-type(2)").children("input").val();
-		var count = selector.children("td:nth-of-type(3)").children("input").val();
-		var sum = selector.children("td:nth-of-type(4)").children("input");
-		sum.val(priceForOne*count);
+		for(var column=1; column<= 4; column++) {
+			var newSelector = selector.children("td:nth-of-type("+column+")").children("input");
+			newSelector.attr("value", newSelector.val())
+			switch(column) {
+				case 2:
+					var priceOfOne = newSelector.val();
+					break;
+				case 3:
+					var count = newSelector.val();
+					break;
+				case 4:
+					newSelector.attr("value", priceOfOne*count);
+					break;
+			}
+
+		}
 		allSum();
 	};
 
@@ -77,14 +98,14 @@ $(document).ready(function (){
 		}
 		
 	});
-
 	/*End add Meal*/
+
 });
 
-(function (global) {
+(function (global) {     
 	var br = {};
-	var foodurl = "snippets/food-snippet.html";
-	var peopleurl = "snippets/people-snippet.html";
+    var foodurl = "snippets/food-snippet.html";     var peopleurl =
+"snippets/people-snippet.html";
 
 	var insertHtml = function (selector, html) {
 		var targetElem = $(selector);
@@ -103,6 +124,7 @@ $(document).ready(function (){
 			$ajaxUtils.sendGetRequest (url, function(html) {
 				insertHtml("#main", html);
 			}, false);
+
 		};
 	}
 	br.loadPeople = loadNeedHtml(peopleurl);
